@@ -4,35 +4,55 @@ import { useState } from "react";
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
-  const [guesses, setGuesses] = useState([]);
+  const [guesses, setGuesses] = useState([...Array(6)]);
   const [history, setHistory] = useState([]);
   const [isCorrect, setIsCorrect] = useState(false);
 
   const formatGuess = () => {
     console.log("Formated the current guess: " + currentGuess);
     const solutionArray = [...solution];
-    const formattedGuess = [...currentGuess].map((letter) => {
+    const currentGuessResult = [...currentGuess].map((letter) => {
       return { key: letter, color: "gray" };
     });
 
-    formattedGuess.forEach((letter, index) => {
+    currentGuessResult.forEach((letter, index) => {
       if (solutionArray[index] === letter.key) {
-        formattedGuess[index].color = "green";
+        currentGuessResult[index].color = "green";
         solutionArray[index] = null;
       }
     });
 
-    formattedGuess.forEach((letter, index) => {
+    currentGuessResult.forEach((letter, index) => {
       if (solutionArray.includes(letter.key) && letter.color !== "green") {
-        formattedGuess[index].color = "yellow";
+        currentGuessResult[index].color = "yellow";
         solutionArray[solutionArray.indexOf(letter.key)] = null;
       }
     });
 
-    return formattedGuess;
+    return currentGuessResult;
   };
 
-  const addNewGuess = () => {};
+  const addNewGuess = (formattedGuess) => {
+    if (currentGuess === solution) {
+      setIsCorrect(true);
+    }
+
+    setGuesses((prevGuesses) => {
+      const newGuesses = [...prevGuesses];
+      newGuesses[turn] = formattedGuess;
+      return newGuesses;
+    });
+
+    setHistory((prevHistory) => {
+      return [...prevHistory, currentGuess];
+    });
+
+    setTurn((prevTurn) => {
+      return prevTurn + 1;
+    });
+
+    setCurrentGuess("");
+  };
 
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
@@ -49,7 +69,7 @@ const useWordle = (solution) => {
         return;
       }
       const currentGuessResult = formatGuess();
-      console.log(currentGuessResult);
+      addNewGuess(currentGuessResult);
     }
 
     if (key === "Backspace") {
