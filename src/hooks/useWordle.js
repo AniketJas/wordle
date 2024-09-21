@@ -5,14 +5,32 @@ const useWordle = () => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(["ninja", "hides"]);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const formatGuess = () => {};
+  const formatGuess = () => {
+    console.log("Formated the current guess: " + currentGuess);
+  };
 
   const addNewGuess = () => {};
 
   const handleKeyup = ({ key }) => {
+    if (key === "Enter") {
+      if (turn > 5) {
+        console.log("You used all your guesses.");
+        return;
+      }
+      if (history.includes(currentGuess)) {
+        console.log("Duplicate guess detected.");
+        return;
+      }
+      if (currentGuess.length !== 5) {
+        console.log("Guess should be 5 characters long.");
+        return;
+      }
+      formatGuess();
+    }
+
     if (key === "Backspace") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
