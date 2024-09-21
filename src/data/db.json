@@ -1,0 +1,19 @@
+{
+    "solutions" : [
+        {"id":1, "word":"ninja"},
+        {"id":2, "word":"train"},
+        {"id":3, "word":"drain"},
+        {"id":4, "word":"sweet"},
+        {"id":5, "word":"cater"},
+        {"id":6, "word":"navie"},
+        {"id":7, "word":"later"},
+        {"id":8, "word":"grain"},
+        {"id":9, "word":"angle"},
+        {"id":10, "word":"aware"},
+        {"id":11, "word":"civil"},
+        {"id":12, "word":"mayor"},
+        {"id":13, "word":"rough"},
+        {"id":14, "word":"trial"},
+        {"id":15, "word":"worst"}
+    ]
+}
