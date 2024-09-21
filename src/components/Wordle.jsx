@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import useWordle from "../hooks/useWordle.js";
+import Grid from "./Grid.jsx";
 
 const Wordle = ({ solution }) => {
   const { currentGuess, handleKeyup, guesses, turn, isCorrect } =
@@ -17,8 +19,9 @@ const Wordle = ({ solution }) => {
 
   return (
     <>
-      <div>Solution is: {solution}</div>
-      <div>Current guess is: {currentGuess}</div>
+      {/* <div>Solution is: {solution}</div> */}
+      {/* <div>Current guess is: {currentGuess}</div> */}
+      <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
     </>
   );
 };
