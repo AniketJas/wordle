@@ -1,15 +1,35 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 
-const useWordle = () => {
+const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [history, setHistory] = useState(["ninja", "hides"]);
+  const [history, setHistory] = useState([]);
   const [isCorrect, setIsCorrect] = useState(false);
 
   const formatGuess = () => {
     console.log("Formated the current guess: " + currentGuess);
+    const solutionArray = [...solution];
+    const formattedGuess = [...currentGuess].map((letter) => {
+      return { key: letter, color: "gray" };
+    });
+
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray[index] === letter.key) {
+        formattedGuess[index].color = "green";
+        solutionArray[index] = null;
+      }
+    });
+
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray.includes(letter.key) && letter.color !== "green") {
+        formattedGuess[index].color = "yellow";
+        solutionArray[solutionArray.indexOf(letter.key)] = null;
+      }
+    });
+
+    return formattedGuess;
   };
 
   const addNewGuess = () => {};
@@ -28,7 +48,8 @@ const useWordle = () => {
         console.log("Guess should be 5 characters long.");
         return;
       }
-      formatGuess();
+      const currentGuessResult = formatGuess();
+      console.log(currentGuessResult);
     }
 
     if (key === "Backspace") {
