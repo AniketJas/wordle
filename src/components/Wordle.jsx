@@ -19,8 +19,8 @@ const Wordle = ({ solution }) => {
 
   return (
     <>
-      {/* <div>Solution is: {solution}</div> */}
-      {/* <div>Current guess is: {currentGuess}</div> */}
+      <div>Solution is: {solution}</div>
+      <div>Current guess is: {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
     </>
   );
