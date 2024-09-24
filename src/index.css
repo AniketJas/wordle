@@ -33,16 +33,94 @@ h1 {
 }
 
 .row>div.green {
-  background: #5ac65a;
-  border-color: #5ac65a;
+  --background: #5ac65a;
+  --border-color: #5ac65a;
+  animation: flip 0.5s ease forwards;
 }
 
 .row>div.gray {
-  background: #a1a1a1;
-  border-color: #a1a1a1;
+  --background: #a1a1a1;
+  --border-color: #a1a1a1;
+  animation: flip 0.5s ease forwards;
 }
 
 .row>div.yellow {
-  background: #e2cc68;
-  border-color: #e2cc68;
+  --background: #e2cc68;
+  --border-color: #e2cc68;
+  animation: flip 0.5s ease forwards;
+}
+
+.row>div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.row>div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.row>div:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.row>div:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.row>div:nth-child(6) {
+  animation-delay: 1s;
+}
+
+.row>div:nth-child(7) {
+  animation-delay: 1.2s;
+}
+
+.row.current>div.filled {
+  animation: bounce 0.1s ease-in-out forwards;
+}
+
+/* animations */
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+    background: #fff;
+    color: #000;
+    border-color: #333;
+  }
+
+  45% {
+    transform: rotateX(90deg);
+    color: #000;
+    background: #fff;
+    border-color: #333;
+  }
+
+  55% {
+    transform: rotateX(90deg);
+    color: #eee;
+    background: var(--background);
+    border-color: var(--border-color);
+  }
+
+  100% {
+    transform: rotateX(0);
+    color: #eee;
+    background: var(--background);
+    border-color: var(--border-color);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+    border-color: #ddd;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    border-color: #333;
+  }
 }
