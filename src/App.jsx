@@ -14,12 +14,12 @@ const App = () => {
         setSolution(randomSolution.word);
       })
       .catch((err) => console.log(err));
-  }, [setSolution]);
+  }, []);
 
   return (
     <div className="App">
       <h1>Wordle</h1>
-      {solution && <Wordle solution={solution} />}
+      {<Wordle solution={solution} />}
     </div>
   );
 };

@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 
-const Keypad = () => {
+const Keypad = ({usedKeys}) => {
   const [letters, setLetters] = useState(null);
 
   useEffect(() => {
@@ -12,7 +14,10 @@ const Keypad = () => {
   return (
     <div className="keypad">
       {letters &&
-        letters.map((letter) => <div key={letter.key}>{letter.key}</div>)}
+        letters.map((letter) => {
+        const color = usedKeys[letter.key];
+        return <div key={letter.key} className={color}>{letter.key}</div>
+      })}
     </div>
   );
 };
